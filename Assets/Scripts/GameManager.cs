@@ -23,10 +23,11 @@ public class GameManager : MonoBehaviour
         if (p1Score == 11)
         {
             this.p1ScoreTxt.text = "P1 WINS!";
+            Debug.Log("Game Over. Left Paddle (Player 1) wins.");
             StartCoroutine(ExecuteAfterTime(3));
         }
 
-        Debug.Log(p1Score);
+        Debug.Log("Player 1 Scored:" + p2Score);
     }
 
     public void Player2Scores()
@@ -37,10 +38,11 @@ public class GameManager : MonoBehaviour
         if (p2Score == 11)
         {
             this.p2ScoreTxt.text = "P2 WINS!";
+            Debug.Log("Game Over. Right Paddle (Player 2) wins.");
             StartCoroutine(ExecuteAfterTime(3));
         }
 
-        Debug.Log(p2Score);
+        Debug.Log("Player 2 Scored:" + p2Score);
     }
 
     IEnumerator ExecuteAfterTime(float time)
