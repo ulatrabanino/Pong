@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Paddle : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float speed = 10;
+    protected Rigidbody rig;
+
+    private void Awake()
     {
-        
+        rig = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ResetPosition()
     {
-        
+        rig.position = new Vector2(rig.position.x, 0.0f);
+        rig.velocity = Vector2.zero;
     }
 }
