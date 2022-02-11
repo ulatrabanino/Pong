@@ -35,4 +35,5 @@ public class playerPaddle : Paddle
             rig.AddForce(direction * this.speed);
         }
     }
+
 }

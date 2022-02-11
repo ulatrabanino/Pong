@@ -14,6 +14,13 @@ public class GameManager : MonoBehaviour
 
     private int p1Score;
     private int p2Score;
+    public AudioClip saw;
+
+    void Start()
+    {
+        GetComponent<AudioSource>().playOnAwake = false;
+        GetComponent<AudioSource>().clip = saw;
+    }
 
     public void PlayerScores()
     {
@@ -24,6 +31,8 @@ public class GameManager : MonoBehaviour
         {
             this.p1ScoreTxt.text = "P1 WINS!";
             Debug.Log("Game Over. Left Paddle (Player 1) wins.");
+            GetComponent<AudioSource>().Play();
+            this.ball.ResetPosition();
             StartCoroutine(ExecuteAfterTime(3));
         }
 
@@ -39,6 +48,8 @@ public class GameManager : MonoBehaviour
         {
             this.p2ScoreTxt.text = "P2 WINS!";
             Debug.Log("Game Over. Right Paddle (Player 2) wins.");
+            GetComponent<AudioSource>().Play();
+            this.ball.ResetPosition();
             StartCoroutine(ExecuteAfterTime(3));
         }
 
@@ -57,7 +68,6 @@ public class GameManager : MonoBehaviour
 
     private void AllReset()
     {
-        this.ball.ResetPosition();
         this.p1Paddle.ResetPosition();
         this.p2Paddle.ResetPosition();
         this.ball.AddStartingForce();
