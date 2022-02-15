@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    public float ballspeed = 200.0f;
+    public float ballspeed = 600.0f;
     //float constantSpeed = 100f;
     private Rigidbody ballrig;
 
@@ -46,5 +46,11 @@ public class Ball : MonoBehaviour
     void Update()
     {
        // ballrig.velocity = constantSpeed * (ballrig.velocity.normalized);
+    }
+
+    public IEnumerator StopSlowUp()
+    {
+        yield return new WaitForSeconds(5.0f); // the number corresponds to the number of seconds the speed up will be applied
+        ballspeed = 600.0f; // back to normal !
     }
 }

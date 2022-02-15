@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Paddle : MonoBehaviour
 {
-    public float speed = 10;
+    public float speed = 100;
     protected Rigidbody rig;
 
     private void Awake()
