@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Threading;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class GameManager : MonoBehaviour
     public Paddle p2Paddle;
     public Text p1ScoreTxt;
     public Text p2ScoreTxt;
+    public BonusPoints bonus;
+    public TMP_Text bomsg;
 
     private int p1Score;
     private int p2Score;
@@ -25,9 +28,15 @@ public class GameManager : MonoBehaviour
     public void PlayerScores()
     {
         p1Score++;
+        if(this.bonus.giveBonus == true)
+        {
+            p1Score++;
+            this.bomsg.text = "";
+            this.bonus.giveBonus = false;
+        }
         this.p1ScoreTxt.text = p1Score.ToString();
 
-        if (p1Score == 11)
+        if (p1Score == 2)
         {
             this.p1ScoreTxt.text = "P1 WINS!";
             Debug.Log("Game Over. Left Paddle (Player 1) wins.");
@@ -42,9 +51,15 @@ public class GameManager : MonoBehaviour
     public void Player2Scores()
     {
         p2Score++;
+        if (this.bonus.giveBonus == true)
+        {
+            p2Score++;
+            this.bomsg.text = "";
+            this.bonus.giveBonus = false;
+        }
         this.p2ScoreTxt.text = p2Score.ToString();
 
-        if (p2Score == 11)
+        if (p2Score == 2)
         {
             this.p2ScoreTxt.text = "P2 WINS!";
             Debug.Log("Game Over. Right Paddle (Player 2) wins.");

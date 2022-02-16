@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Ball : MonoBehaviour
 {
     public float ballspeed = 600.0f;
     //float constantSpeed = 100f;
     private Rigidbody ballrig;
+    public TMP_Text slowmsg;
 
     void Awake()
     {
@@ -42,15 +44,22 @@ public class Ball : MonoBehaviour
         ballrig.AddForce(force);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void removePower()
     {
-       // ballrig.velocity = constantSpeed * (ballrig.velocity.normalized);
+        StartCoroutine(StopSlowUp(6));
+        StartCoroutine(noText(6));
     }
 
-    public IEnumerator StopSlowUp()
+    IEnumerator noText(float time)
     {
-        yield return new WaitForSeconds(5.0f); // the number corresponds to the number of seconds the speed up will be applied
+        yield return new WaitForSeconds(time);
+        this.slowmsg.text = "";
+        Debug.Log("no slow");
+    }
+    IEnumerator StopSlowUp(float time)
+    {
+        yield return new WaitForSeconds(time); // the number corresponds to the number of seconds the speed up will be applied
         ballspeed = 600.0f; // back to normal !
     }
+
 }
